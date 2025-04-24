@@ -1,2 +1,2 @@
-Wersja PHP: [np. 8.3.2]
-IDE - nazwa oraz strona domowa: [np. Visual Studio Code, https://code.visualstudio.com/]
+Wersja PHP: [8.3.2]
+IDE - nazwa oraz strona domowa: [Visual Studio Code, https://code.visualstudio.com/]
