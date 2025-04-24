@@ -42,11 +42,20 @@ function getAuthor($books, $isbn) {
 }
 
 function getTitle($books, $isbn, $lang) {
-   return '??';
+    //Zwraca tytuł książki
+    $title = $books[$isbn]['title'][$lang];
+   return  $title;
 }
 
 function getTranslator($books, $isbn, $lang) {
-    return '??';
+    if (($books[$isbn]['translator'][$lang]) === Null){
+        // Brak przetłumaczenia
+        return false;
+    }
+    // Zwraca informacje o osobie wykonującej tłumaczenie
+    $translator = $books[$isbn]['translator'][$lang];
+
+    return $translator;
 }
 
 // Testowanie
