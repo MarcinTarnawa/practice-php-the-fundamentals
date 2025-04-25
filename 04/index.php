@@ -42,16 +42,34 @@ function getAuthor($books, $isbn) {
 }
 
 function getTitle($books, $isbn, $lang) {
+    if (!isset($books[$isbn])) {
+        // Taki ISBN nie istnieje w spisie
+        return null;
+    }
+    
+    if (!isset($books[$isbn]['title'][$lang])) {
+        return false; // Brak tytułu w podanym języku
+    }
+
     //Zwraca tytuł książki
     $title = $books[$isbn]['title'][$lang];
    return  $title;
 }
 
 function getTranslator($books, $isbn, $lang) {
+    if (!isset($books[$isbn])) {
+        // Taki ISBN nie istnieje w spisie
+        return null;
+    }
+    if (!isset($books[$isbn]['title'][$lang])) {
+        return false; // Brak tytułu w podanym języku
+    }
+    
     if (($books[$isbn]['translator'][$lang]) === Null){
         // Brak przetłumaczenia
         return false;
     }
+
     // Zwraca informacje o osobie wykonującej tłumaczenie
     $translator = $books[$isbn]['translator'][$lang];
 
@@ -62,7 +80,9 @@ function getTranslator($books, $isbn, $lang) {
 echo getAuthor($books, '978-83-7278-000-3'); // J.K. Rowling
 echo var_export(getAuthor($books, '000-00-0000-000-0'), true); // null
 echo getTitle($books, '978-83-7278-000-3', 'pl'); // Harry Potter i Kamień Filozoficzny
+echo var_export(getTitle($books, '000-00-0000-000-0', 'it'),true); // null
 echo getTitle($books, '978-83-7278-000-3', 'en'); // Harry Potter and the Philosopher's Stone
 echo getTranslator($books, '83-7278-007-2', 'pl'); // Andrzej Polkowski
-echo var_export(getTranslator($books, '83-7278-007-2', 'en'), true) // false
+echo var_export(getTranslator($books, '83-7278-007-2', 'en'), true); // false
+echo var_export(getTranslator($books, '00-0000-00-200', 'en'), true); // Null
 ?>

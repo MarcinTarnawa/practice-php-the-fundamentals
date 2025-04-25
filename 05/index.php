@@ -10,9 +10,10 @@ $items = $menu;
 
 function generateMenu($items) {
     foreach ($items as $item) {
-        echo $item['label']. " " . $item['url'] . "<br>";
+        echo "<li><a href =". $item['url'].">" . " " . $item['label'] . "</a></li>";
       }
 }
 
 require "index.view.php";
+
 
